@@ -3,6 +3,7 @@ import pandas as pd
 from kmodes.kprototypes import KPrototypes
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from datetime import datetime
+import pickle
 
 cluster_descriptions = {
     0: {
