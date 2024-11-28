@@ -136,7 +136,7 @@ def main():
 
     if st.button("Segment"):
         user_data_preprocessed, categorical_cols = preprocess_data(user_data)
-        cluster = kproto.fit_predict(user_data_preprocessed, categorical=categorical_cols)
+        cluster = kproto.predict(user_data_preprocessed, categorical=categorical_cols)
     
         st.write("Customer Segment:")
         display_cluster_info(cluster[0])
