@@ -102,8 +102,9 @@ def main():
     complain = st.selectbox("Complain", ["No", "Yes"])
     response = st.selectbox("Response", ["No", "Yes"])
     selected_date = st.date_input("Customer Acquisition Date")
+    current_date = datetime.today().date()
     if selected_date is not None:
-        customer_tenure = (pd.to_datetime(datetime.now()) - selected_date).dt.days.item() 
+        customer_tenure = (current_date - selected_date).days
     else:
         customer_tenure = 0
     
