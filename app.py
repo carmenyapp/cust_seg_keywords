@@ -3,7 +3,9 @@ import pandas as pd
 from kmodes.kprototypes import KPrototypes
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from datetime import datetime
-import pickle
+import joblib
+
+kproto = joblib.load('kproto_model.pkl')
 
 cluster_descriptions = {
     0: {
@@ -48,11 +50,6 @@ def preprocess_data(data):
 
     return data, categorical_indices
 
-def segment_customer(data, categorical_cols):
-    kproto = KPrototypes(n_clusters=3, init='Huang', random_state=42)
-    clusters = kproto.fit_predict(data, categorical=categorical_cols)
-    return clusters
-
 def display_cluster_info(cluster):
     if cluster in cluster_descriptions:
         cluster_info = cluster_descriptions[cluster]
@@ -75,6 +72,7 @@ def display_cluster_info(cluster):
 def main():
     st.title("Customer Segmentation App")
     st.header("Customer Information")
+    
     year_birth = st.number_input("Year of Birth", min_value=1900, max_value=2024)
     education = st.selectbox("Education", ["Graduation", "PhD", "Master", "2n Cycle", "Basic"])
     marital_status = st.selectbox("Marital Status", ["Married", "Single", "Together", "Divorced", "Widow"])
@@ -136,12 +134,12 @@ def main():
         "Customer_Tenure": [customer_tenure]
     })
 
-
-    user_data_preprocessed, categorical_cols = preprocess_data(user_data)
-    cluster = segment_customer(user_data_preprocessed, categorical_cols)
-
-    st.write("Customer Segment:")
-    display_cluster_info(cluster[0])
+    if st.button("Segment"):
+        user_data_preprocessed, categorical_cols = preprocess_data(user_data)
+        cluster = kproto.fit_predict(user_data_preprocessed, categorical=categorical_cols)
+    
+        st.write("Customer Segment:")
+        display_cluster_info(cluster[0])
 
 if __name__ == "__main__":
     main()
