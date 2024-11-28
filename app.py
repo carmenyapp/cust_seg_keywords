@@ -2,9 +2,7 @@ import streamlit as st
 import pandas as pd
 from kmodes.kprototypes import KPrototypes
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-from datetime import datetime  # Fix: Import datetime module
 
-# Pre-defined cluster information
 cluster_descriptions = {
     0: {
         "Product/Service": ["AI-powered software", "customer engagement tool", "small business solution"],
