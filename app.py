@@ -45,7 +45,7 @@ def preprocess_data(data):
     scaler = StandardScaler()
     data[numeric_cols] = scaler.fit_transform(data[numeric_cols])
 
-    return data, categorical_cols, numeric_cols
+    return data, categorical_indices, numeric_cols
 
 def segment_customer(data, categorical_cols, numeric_cols):
     # Load pre-trained KPrototypes model (if available)
