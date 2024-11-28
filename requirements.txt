@@ -2,3 +2,4 @@ pandas==2.2.2
 sklearn-pandas==2.2.0
 streamlit==1.40.2
 kmodes==0.12.2
+datetime==4.3
