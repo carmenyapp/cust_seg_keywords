@@ -48,8 +48,6 @@ def preprocess_data(data):
     return data, categorical_indices, numeric_cols
 
 def segment_customer(data, categorical_cols, numeric_cols):
-    # Load pre-trained KPrototypes model (if available)
-    # Alternatively, train the model here using provided data
     kproto = KPrototypes(n_clusters=3, init='Huang', random_state=42)
     clusters = kproto.fit_predict(data, categorical=categorical_cols)
     return clusters
@@ -72,11 +70,19 @@ def display_cluster_info(cluster):
         st.write("**Emotion/Benefit:**")
         for benefit in cluster_info["Emotion/Benefit"]:
             st.write(f"- {benefit}")
+import pickle
+
+@st.cache_resource
+def load_model():
+    with open("kprototypes_model.pkl", "rb") as file:
+        model = pickle.load(file)
+    return model
 
 def main():
     st.title("Customer Segmentation App")
+    st.sidebar.header("Customer Information")
 
-    # User input fields
+    kproto = load_model()
     year_birth = st.number_input("Year of Birth", min_value=1900, max_value=2024)
     education = st.selectbox("Education", ["Graduation", "PhD", "Master", "2n Cycle", "Basic"])
     marital_status = st.selectbox("Marital Status", ["Married", "Single", "Together", "Divorced", "Widow"])
