@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from kmodes.kprototypes import KPrototypes
 from sklearn.preprocessing import LabelEncoder, StandardScaler
+from datetime import datetime  # Fix: Import datetime module
 
 # Pre-defined cluster information
 cluster_descriptions = {
@@ -75,7 +76,7 @@ def display_cluster_info(cluster):
 def main():
     st.title("Customer Segmentation App")
 
-   # User input fields
+    # User input fields
     year_birth = st.number_input("Year of Birth", min_value=1900, max_value=2024)
     education = st.selectbox("Education", ["Graduation", "PhD", "Master", "2n Cycle", "Basic"])
     marital_status = st.selectbox("Marital Status", ["Married", "Single", "Together", "Divorced", "Widow"])
@@ -103,7 +104,7 @@ def main():
     response = st.selectbox("Response", ["No", "Yes"])
     selected_date = st.date_input("Customer Acquisition Date")
     if selected_date is not None:
-        customer_tenure = (pd.to_datetime(datetime.now()) - selected_date).dt.days.item()  # Calculate and get the first element
+        customer_tenure = (pd.to_datetime(datetime.now()) - selected_date).days  # Correct way to get days
     else:
         customer_tenure = 0
     
