@@ -103,7 +103,7 @@ def main():
     response = st.selectbox("Response", ["No", "Yes"])
     selected_date = st.date_input("Customer Acquisition Date")
     if selected_date is not None:
-        customer_tenure = (datetime.now() - selected_date).days
+        customer_tenure = (pd.to_datetime(datetime.now()) - selected_date).days
     else:
         customer_tenure = 0
     
