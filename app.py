@@ -39,7 +39,7 @@ def preprocess_data(data):
     label_encoder = LabelEncoder()
     for col in categorical_cols:
         data[col] = label_encoder.fit_transform(data[col]) 
-    categorical_indices = [df.columns.get_loc(col) for col in categorical_cols]
+    categorical_indices = [data.columns.get_loc(col) for col in categorical_cols]
 
     # Scale numerical features (if necessary)
     scaler = StandardScaler()
