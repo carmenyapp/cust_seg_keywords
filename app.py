@@ -69,7 +69,8 @@ def display_cluster_info(cluster):
         for action in cluster_info["Action/CTA"]:
             st.write(f"- {action}")
         st.write("**Emotion/Benefit:**")
-        for benefit in cluster_
+        for benefit in cluster_info["Emotion/Benefit"]:
+            st.write(f"- {benefit}")
 
 def main():
     st.title("Customer Segmentation App")
