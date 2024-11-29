@@ -9,25 +9,19 @@ kproto = joblib.load('kproto_model.pkl')
 
 cluster_descriptions = {
     0: {
-        "Product/Service": ["AI-powered software", "customer engagement tool", "small business solution"],
-        "Target Audience": ["small business owners", "entrepreneurs", "marketing teams"],
-        "Problem/Solution": ["boost customer engagement", "increase sales", "improve customer retention"],
-        "Action/CTA": ["explore our solutions", "get a free demo", "contact us for a consultation"],
-        "Emotion/Benefit": ["data-driven insights", "automated processes", "scalable solutions"],
+        "Target Audience": ["senior", "Long-term Customer", "Responsive Customer"],
+        "Action/CTA": ["explore our website now!"],
+        "Emotion/Benefit": ["Engaged", "satisfied"],
     },
     1: {
-        "Product/Service": ["organic meal kits", "healthy meal delivery", "meal planning service"],
         "Target Audience": ["health-conscious individuals", "busy professionals", "families", "fitness enthusiasts"],
-        "Problem/Solution": ["save time cooking", "eat healthier", "convenient meal prep", "balanced meals"],
-        "Action/CTA": ["order now", "sign up for subscription", "get your first box", "choose your plan"],
-        "Emotion/Benefit": ["fresh ingredients", "nutritious meals", "easy-to-cook", "delicious and wholesome", "no preservatives"],
+        "Action/CTA": ["sign up for subscription"],
+        "Emotion/Benefit": ["Energised", "excited"],
     },
     2: {
-        "Product/Service": ["eco-friendly travel accessories", "sustainable travel gear", "green travel products"],
-        "Target Audience": ["sustainable travelers", "eco-conscious tourists", "adventure seekers", "travel enthusiasts"],
-        "Problem/Solution": ["reduce plastic waste", "eco-friendly alternatives", "durable travel accessories", "pack light and smart"],
-        "Action/CTA": ["shop now", "explore our collection", "buy sustainable gear", "get your eco-friendly essentials"],
-        "Emotion/Benefit": ["reduce your carbon footprint", "stylish and sustainable", "guilt-free travel", "durable and practical"],
+       "Target Audience": ["non-responder", "active customer"],
+        "Action/CTA": ["shop now", "explore our collection", "get your daily essentials"],
+        "Emotion/Benefit": ["Energised", "excited"],
     },
 }
 
@@ -53,15 +47,9 @@ def preprocess_data(data):
 def display_cluster_info(cluster):
     if cluster in cluster_descriptions:
         cluster_info = cluster_descriptions[cluster]
-        st.write("**Product/Service:**")
-        for service in cluster_info["Product/Service"]:
-            st.write(f"- {service}")
         st.write("**Target Audience:**")
         for audience in cluster_info["Target Audience"]:
             st.write(f"- {audience}")
-        st.write("**Problem/Solution:**")
-        for solution in cluster_info["Problem/Solution"]:
-            st.write(f"- {solution}")
         st.write("**Action/CTA:**")
         for action in cluster_info["Action/CTA"]:
             st.write(f"- {action}")
